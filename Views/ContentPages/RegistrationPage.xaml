@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_MovieCorn.Views.ContentPages.RegistrationPage"
+             Title="RegistrationPage">
+    <Grid>
+        <Image Source="background_image.png"
+               Aspect="AspectFill"></Image>
+        <ImageButton HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     Margin="16,40"
+                     HeightRequest="48"
+                     WidthRequest="48"
+                     Aspect="AspectFill"
+                     Source="arrow_left.png"
+                     Clicked="ImageButton_Clicked"></ImageButton>
+        <Grid Margin="32,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="128"></RowDefinition>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Text="MovieCorn"
+                   FontFamily="GolosText-SemiBold"
+                   LineBreakMode="WordWrap"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="42">
+                <Label.Shadow>
+                    <Shadow Radius="2"
+                            Offset="-4,4"
+                            Opacity="0.2"></Shadow>
+                </Label.Shadow>
+            </Label>
+            <Grid Grid.Row="2">
+                <VerticalStackLayout VerticalOptions="Start"
+                                     Spacing="8">
+                    <Label Text="Введите номер телефона*"
+                           FontFamily="GolosText-Medium"
+                           TextColor="White"
+                           FontSize="24"
+                           HorizontalOptions="Center"></Label>
+                    <Entry Placeholder="7 999 999 99 99"
+                           IsEnabled="False"
+                           FontFamily="GolosText-Medium"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           MaxLength="11"
+                           Keyboard="Numeric"
+                           CharacterSpacing="1"
+                           TextColor="White"
+                           x:Name="phoneEntry"
+                           ReturnType="Done"
+                           Completed="phoneEntry_Completed"></Entry>
+                    
+                    <Label Text="Введите пароль*"
+                           FontFamily="GolosText-Medium"
+                           TextColor="White"
+                           FontSize="24"
+                           HorizontalOptions="Center"></Label>
+                    <Entry Placeholder="Пароль"
+                           FontFamily="GolosText-Medium"
+                           IsPassword="True"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           MaxLength="20"
+                           CharacterSpacing="1"
+                           TextColor="White"
+                           x:Name="passwordEntry"
+                           ReturnType="Done"
+                           Completed="passwordEntry_Completed"></Entry>
+                    
+                    <Label Text="Введите имя пользователя"
+                           FontFamily="GolosText-Medium"
+                           TextColor="White"
+                           FontSize="24"
+                           HorizontalOptions="Center"></Label>
+                    <Entry Placeholder="Имя пользователя"
+                           FontFamily="GolosText-Medium"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           MaxLength="20"
+                           CharacterSpacing="1"
+                           TextColor="White"
+                           x:Name="nameEntry"
+                           ReturnType="Done"
+                           Completed="nameEntry_Completed"></Entry>
+                    <Button Text="Регистрация"
+                            Margin="0,32,0,0"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            Padding="24,8"
+                            FontSize="24"
+                            FontFamily="GolosText-Medium"
+                            x:Name="regBtn"
+                            Clicked="regBtn_Clicked"
+                            Background="White"
+                            TextColor="Black"></Button>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

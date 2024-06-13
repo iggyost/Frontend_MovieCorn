@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_MovieCorn.Views.ContentPages.MoviePage"
+             Title="MoviePage"
+             NavigationPage.HasNavigationBar="False"
+             Padding="-2"
+             Loaded="ContentPage_Loaded">
+    <Grid>
+        <Image x:Name="movieCoverImage"
+               Aspect="AspectFill"
+               Margin="0,0,0,386"></Image>
+        <Border BackgroundColor="#BF000000"></Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Border BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 30,30,0,0">
+                    <Grid Margin="24">
+                        <ActivityIndicator x:Name="loadingIndicator"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           HeightRequest="64"
+                                           WidthRequest="64"
+                                           Color="Black"></ActivityIndicator>
+                        <VerticalStackLayout Spacing="16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="nameMovieLabel"
+                                       FontSize="22"
+                                       FontFamily="GolosText-Medium"
+                                       LineBreakMode="WordWrap"></Label>
+                                <ImageButton Source="favorite_icon.png"
+                                             x:Name="favoriteButton"
+                                             Clicked="favoriteButton_Clicked"
+                                             Aspect="AspectFill"
+                                             Grid.Column="1"
+                                             WidthRequest="40"
+                                             HeightRequest="40"
+                                             HorizontalOptions="Center"
+                                             VerticalOptions="Start"></ImageButton>
+                            </Grid>
+                            <CollectionView x:Name="tagsCv"
+                                            VerticalOptions="Center">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Horizontal"
+                                                       ItemSpacing="8"></LinearItemsLayout>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border StrokeShape="RoundRectangle 10"
+                                                StrokeThickness="2"
+                                                BackgroundColor="#7FD3D3D3"
+                                                Stroke="LightGray"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                Padding="6">
+                                            <HorizontalStackLayout>
+                                                <Label FontSize="14"
+                                                       TextColor="#4B4B4B"
+                                                       HorizontalOptions="Start"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalOptions="Center"
+                                                       Margin="8,0"
+                                                       Text="{Binding Name}"></Label>
+                                            </HorizontalStackLayout>
+                                        </Border>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <VerticalStackLayout Spacing="8">
+                                    <Label Text="Длительность"
+                                           TextColor="Gray"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center"></Label>
+                                    <Label x:Name="lengthLabel"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           FontSize="16"
+                                           FontFamily="GolosText-Medium"></Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Spacing="8"
+                                                     Grid.Column="1">
+                                    <Label Text="Страна"
+                                           TextColor="Gray"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center"></Label>
+                                    <Label x:Name="countryLabel"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           FontSize="16"
+                                           FontFamily="GolosText-Medium"></Label>
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Spacing="8"
+                                                     Grid.Column="2">
+                                    <Label Text="Ограничение"
+                                           TextColor="Gray"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Center"></Label>
+                                    <Label x:Name="ageLabel"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           FontSize="16"
+                                           FontFamily="GolosText-Medium"></Label>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <HorizontalStackLayout Spacing="8">
+                                <Label Text="Год выпуска:"
+                                       FontSize="16"></Label>
+                                <Label x:Name="yearLabel"
+                                       FontSize="16"
+                                       FontFamily="GolosText-Medium"></Label>
+                            </HorizontalStackLayout>
+                            <VerticalStackLayout Spacing="8"
+                                                 Margin="0,16,0,0">
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="Режиссер:"
+                                           TextColor="Gray"></Label>
+                                    <Label x:Name="directorLabel"
+                                           FontFamily="GolosText-Medium"></Label>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Spacing="8">
+                                    <Label Text="Продюсер:"
+                                           TextColor="Gray"></Label>
+                                    <Label x:Name="producerLabel"
+                                           FontFamily="GolosText-Medium"></Label>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,153 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>Frontend_MovieCorn</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>Frontend_MovieCorn</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.frontend_moviecorn</ApplicationId>
+		<ApplicationIdGuid>eac999de-d175-4e26-8236-4279f92e616e</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Covers\coverphoto_1.png" />
+	  <None Remove="Resources\Covers\coverphoto_10.png" />
+	  <None Remove="Resources\Covers\coverphoto_11.png" />
+	  <None Remove="Resources\Covers\coverphoto_12.png" />
+	  <None Remove="Resources\Covers\coverphoto_13.png" />
+	  <None Remove="Resources\Covers\coverphoto_14.png" />
+	  <None Remove="Resources\Covers\coverphoto_15.png" />
+	  <None Remove="Resources\Covers\coverphoto_16.png" />
+	  <None Remove="Resources\Covers\coverphoto_17.png" />
+	  <None Remove="Resources\Covers\coverphoto_18.png" />
+	  <None Remove="Resources\Covers\coverphoto_19.png" />
+	  <None Remove="Resources\Covers\coverphoto_2.png" />
+	  <None Remove="Resources\Covers\coverphoto_20.png" />
+	  <None Remove="Resources\Covers\coverphoto_21.png" />
+	  <None Remove="Resources\Covers\coverphoto_22.png" />
+	  <None Remove="Resources\Covers\coverphoto_23.png" />
+	  <None Remove="Resources\Covers\coverphoto_24.png" />
+	  <None Remove="Resources\Covers\coverphoto_25.png" />
+	  <None Remove="Resources\Covers\coverphoto_26.png" />
+	  <None Remove="Resources\Covers\coverphoto_27.png" />
+	  <None Remove="Resources\Covers\coverphoto_3.png" />
+	  <None Remove="Resources\Covers\coverphoto_4.png" />
+	  <None Remove="Resources\Covers\coverphoto_5.png" />
+	  <None Remove="Resources\Covers\coverphoto_6.png" />
+	  <None Remove="Resources\Covers\coverphoto_7.png" />
+	  <None Remove="Resources\Covers\coverphoto_8.png" />
+	  <None Remove="Resources\Covers\coverphoto_9.png" />
+	  <None Remove="Resources\Fonts\GolosText-Black.ttf" />
+	  <None Remove="Resources\Fonts\GolosText-Bold.ttf" />
+	  <None Remove="Resources\Fonts\GolosText-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\GolosText-Medium.ttf" />
+	  <None Remove="Resources\Fonts\GolosText-Regular.ttf" />
+	  <None Remove="Resources\Fonts\GolosText-SemiBold.ttf" />
+	  <None Remove="Resources\Images\arrow_left.png" />
+	  <None Remove="Resources\Images\background_image.png" />
+	  <None Remove="Resources\Images\clear_icon.png" />
+	  <None Remove="Resources\Images\close_icon.png" />
+	  <None Remove="Resources\Images\favorite_icon.png" />
+	  <None Remove="Resources\Images\favorite_icon_filled.png" />
+	  <None Remove="Resources\Images\home_icon.png" />
+	  <None Remove="Resources\Images\profile_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Covers\coverphoto_1.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_10.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_11.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_12.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_13.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_14.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_15.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_16.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_17.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_18.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_19.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_2.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_20.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_21.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_22.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_23.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_24.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_25.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_26.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_27.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_3.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_4.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_5.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_6.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_7.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_8.png" />
+	  <MauiImage Include="Resources\Covers\coverphoto_9.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\ContentPages\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentPages\MoviePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentPages\PasswordEnterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentPages\PhoneEnterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentPages\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentPages\RegistrationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ContentPages\WelcomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_MovieCorn.Views.ContentPages.ProfilePage"
+             Title="ProfilePage"
+             Shell.NavBarIsVisible="False"
+             Loaded="ContentPage_Loaded">
+    <Grid>
+        <Image Aspect="AspectFill"
+               Source="background_image.png"></Image>
+        <Grid Margin="16,32">
+            <VerticalStackLayout Spacing="8">
+                <Border HeightRequest="144"
+                        WidthRequest="144"
+                        StrokeShape="RoundRectangle 20" 
+                        StrokeThickness="0"
+                        BackgroundColor="#1AFFFFFF">
+                    <Grid>
+                        <Label Text="Фото отсутствует"
+                               TextColor="White"
+                               FontSize="14"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"></Label>
+                        <Image Aspect="AspectFill"></Image>
+                    </Grid>
+                </Border>
+                <Label x:Name="userNameLabel"
+                       TextColor="White"
+                       FontSize="28"
+                       FontFamily="GolosText-Medium"
+                       HorizontalOptions="Center"></Label>
+                <Label x:Name="userPhoneLabel"
+                       TextColor="LightGray"
+                       HorizontalOptions="Center"
+                       FontSize="20"></Label>
+                <Label Text="Понравившиеся фильмы"
+                       TextColor="White"
+                       FontSize="22"
+                       Margin="0,32,0,0"></Label>
+                <Border HeightRequest="256"
+                        BackgroundColor="#1AFFFFFF"
+                        StrokeShape="RoundRectangle 20"
+                        StrokeThickness="0">
+                    <Grid Margin="8">
+                        <Label HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               x:Name="noMoviesLabel"
+                               Text="Фильмы отсутствуют"
+                               TextColor="White"
+                               FontSize="16"></Label>
+                        <CollectionView x:Name="favoriteCollectionView">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical"
+                                     HorizontalItemSpacing="16"
+                                     VerticalItemSpacing="16"
+                                     Span="2"></GridItemsLayout>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border WidthRequest="140"
+                                            HeightRequest="200"
+                                            StrokeShape="RoundRectangle 20"
+                                            StrokeThickness="0"
+                                            AutomationId="{Binding MovieId}">
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="borderMovieTap"
+                                                                  Tapped="borderMovieTap_Tapped"></TapGestureRecognizer>
+                                        </Border.GestureRecognizers>
+                                        <Border.Shadow>
+                                            <Shadow Offset="-6,6"
+                                                Radius="8"
+                                                Opacity="0.3"></Shadow>
+                                        </Border.Shadow>
+                                        <Image Source="{Binding CoverPath}"
+                                               Aspect="AspectFill"></Image>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+            <Button VerticalOptions="End"
+                    HorizontalOptions="Center"
+                    Text="Выйти из аккаунта"
+                    TextColor="Black"
+                    FontSize="18"
+                    BackgroundColor="White"
+                    x:Name="exitBtn"
+                    Clicked="exitBtn_Clicked"></Button>
+        </Grid>
+    </Grid>
+</ContentPage>

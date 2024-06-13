@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_MovieCorn.Views.ContentPages.MainPage"
+             Title="MainPage"
+             Shell.NavBarIsVisible="False"
+             Loaded="ContentPage_Loaded">
+    <Grid>
+        <Image Aspect="AspectFill"
+               Source="background_image.png"></Image>
+        <Grid Margin="8,16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"></RowDefinition>
+                <RowDefinition Height="8"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="260"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Border StrokeShape="RoundRectangle 20"
+                        VerticalOptions="Center">
+                    <SearchBar x:Name="searchTags"
+                               Placeholder="Поиск..."
+                               FontSize="18"
+                               SearchButtonPressed="searchTags_SearchButtonPressed"
+                               TextChanged="searchTags_TextChanged"
+                               CancelButtonColor="Transparent"></SearchBar>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid VerticalOptions="Start">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="335"></ColumnDefinition>
+                        <ColumnDefinition Width="40"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton x:Name="clearTags"
+                                 HeightRequest="40"
+                                 WidthRequest="40"
+                                 VerticalOptions="Center"
+                                 Source="clear_icon.png"
+                                 Aspect="AspectFill"
+                                 Grid.Column="1"
+                                 Clicked="clearTags_Clicked"></ImageButton>
+                    <CollectionView HorizontalScrollBarVisibility="Always"
+                                    VerticalOptions="Center"
+                                    x:Name="tagsCv"
+                                    Loaded="tagsCv_Loaded"
+                                    Margin="0,0,8,0">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal"
+                                               ItemSpacing="8"></LinearItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border StrokeShape="RoundRectangle 10"
+                                        StrokeThickness="2"
+                                        BackgroundColor="#D3D3D3"
+                                        Stroke="Gray"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Padding="6">
+                                    <HorizontalStackLayout>
+                                        <Label FontSize="14"
+                                               TextColor="#4B4B4B"
+                                               HorizontalOptions="Start"
+                                               HorizontalTextAlignment="Start"
+                                               VerticalOptions="Center"
+                                               Margin="8,0"
+                                               Text="{Binding Name}"></Label>
+                                        <ImageButton Source="close_icon.png"
+                                                     Aspect="AspectFill"
+                                                     WidthRequest="24"
+                                                     HeightRequest="24"
+                                                     VerticalOptions="Center"
+                                                     x:Name="removeTag"
+                                                     Clicked="removeTag_Clicked"
+                                                     AutomationId="{Binding TagId}"></ImageButton>
+                                    </HorizontalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Text="Популярные фильмы"
+                       FontSize="28"
+                       FontFamily="GolosText-Medium"
+                       TextColor="White"
+                       Margin="0,0,0,16"></Label>
+                <ActivityIndicator Color="White"
+                                   IsRunning="False"
+                                   WidthRequest="64"
+                                   ZIndex="1"
+                                   x:Name="loadingPopular"
+                                   Grid.Row="1"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"></ActivityIndicator>
+                <VerticalStackLayout Grid.Row="1">
+                    <CarouselView x:Name="popularMoviesCv"
+                                  IndicatorView="popularIndicatorView"
+                                  PeekAreaInsets="32">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Border WidthRequest="140"
+                                        HeightRequest="200"
+                                        StrokeShape="RoundRectangle 20"
+                                        StrokeThickness="0"
+                                        AutomationId="{Binding MovieId}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="borderPopularMovieTap"
+                                                              Tapped="borderPopularMovieTap_Tapped"></TapGestureRecognizer>
+                                    </Border.GestureRecognizers>
+                                    <Border.Shadow>
+                                        <Shadow Offset="-6,6"
+                                                Radius="8"
+                                                Opacity="0.3"></Shadow>
+                                    </Border.Shadow>
+                                    <Image Source="{Binding CoverPath}"
+                                           Aspect="AspectFill"></Image>
+                                </Border>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView IndicatorsShape="Circle"
+                                   SelectedIndicatorColor="White"
+                                   IndicatorColor="Gray"
+                                   x:Name="popularIndicatorView"
+                                   HorizontalOptions="Center"
+                                   Margin="0,8"></IndicatorView>
+                </VerticalStackLayout>
+            </Grid>
+            <Grid Grid.Row="4">
+                <ActivityIndicator Color="White"
+                                   IsRunning="False"
+                                   WidthRequest="64"
+                                   HeightRequest="64"
+                                   ZIndex="1"
+                                   x:Name="loadingSearch"></ActivityIndicator>
+                <ScrollView Margin="0,16,0,0">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Рекомендованные фильмы"
+                           FontSize="24"
+                           FontFamily="GolosText-Medium"
+                           TextColor="White"></Label>
+                    <CollectionView x:Name="recMoviesCv">
+                        <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal"
+                                                   ItemSpacing="10"></LinearItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border WidthRequest="180"
+                                        HeightRequest="260"
+                                        StrokeShape="RoundRectangle 20"
+                                        StrokeThickness="0"
+                                        AutomationId="{Binding MovieId}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="borderRecMovieTap"
+                                                              Tapped="borderRecMovieTap_Tapped"></TapGestureRecognizer>
+                                    </Border.GestureRecognizers>
+                                    <Border.Shadow>
+                                        <Shadow Offset="-6,6"
+                                                Radius="8"
+                                                Opacity="0.8"></Shadow>
+                                    </Border.Shadow>
+                                    <Image Source="{Binding CoverPath}"
+                                           Aspect="AspectFill"></Image>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Label Text="Найденные фильмы"
+                           IsVisible="false"
+                           FontSize="24"
+                           FontFamily="GolosText-Medium"
+                           TextColor="White"
+                           x:Name="headerSearchFilms"></Label>
+                    <CollectionView x:Name="moviesCv">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout VerticalItemSpacing="8"
+                                             HorizontalItemSpacing="16"
+                                             Span="2"
+                                             Orientation="Vertical"></GridItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border WidthRequest="180"
+                                        HeightRequest="260"
+                                        StrokeShape="RoundRectangle 20"
+                                        StrokeThickness="0"
+                                        AutomationId="{Binding MovieId}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="borderMovieTap"
+                                                          Tapped="borderMovieTap_Tapped"></TapGestureRecognizer>
+                                    </Border.GestureRecognizers>
+                                    <Border.Shadow>
+                                        <Shadow Offset="-6,6"
+                                                Radius="8"
+                                                Opacity="0.8"></Shadow>
+                                    </Border.Shadow>
+                                    <Image Source="{Binding CoverPath}"
+                                           Aspect="AspectFill"></Image>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                    
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

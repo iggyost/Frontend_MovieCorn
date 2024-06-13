@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_MovieCorn.Views.ContentPages.PhoneEnterPage"
+             Title="PhoneEnterPage">
+    <Grid>
+        <Image Source="background_image.png"
+               Aspect="AspectFill"></Image>
+        <Grid Margin="32,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="128"></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Text="MovieCorn"
+                   FontFamily="GolosText-SemiBold"
+                   LineBreakMode="WordWrap"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="42">
+                <Label.Shadow>
+                    <Shadow Radius="2"
+                            Offset="-4,4"
+                            Opacity="0.2"></Shadow>
+                </Label.Shadow>
+            </Label>
+            <Grid Grid.Row="2">
+                <VerticalStackLayout VerticalOptions="Start"
+                                     Spacing="8">
+                    <Label Text="Введите номер телефона"
+                           FontFamily="GolosText-Medium"
+                           TextColor="LightGray"
+                           FontSize="24"
+                           HorizontalOptions="Center"></Label>
+                    <Entry Placeholder="7 999 999 99 99"
+                           FontFamily="GolosText-Medium"
+                           FontSize="22"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           MaxLength="11"
+                           Keyboard="Numeric"
+                           CharacterSpacing="1"
+                           TextColor="White"
+                           x:Name="phoneEntry"
+                           ReturnType="Done"
+                           Completed="phoneEntry_Completed"></Entry>
+                </VerticalStackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

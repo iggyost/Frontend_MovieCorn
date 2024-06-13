@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend_MovieCorn.Views.ContentPages.WelcomePage"
+             Title="WelcomePage"
+             Loaded="ContentPage_Loaded">
+    <Grid>
+        <Image Source="background_image.png"
+               Aspect="AspectFill"></Image>
+        <Grid>
+            <ActivityIndicator VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               Color="White"
+                               WidthRequest="64"
+                               HeightRequest="64"
+                               x:Name="loadingView"
+                               ZIndex="1"></ActivityIndicator>
+        </Grid>
+    </Grid>
+</ContentPage>
